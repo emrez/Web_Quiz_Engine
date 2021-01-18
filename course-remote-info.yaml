@@ -3,17 +3,17 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/287312/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Mon, 18 Jan 2021 03:32:54 UTC
+update_date: Mon, 18 Jan 2021 16:07:07 UTC
 stages:
 - id: 504
   step: 8252
-  is_completed: false
+  is_completed: true
 - id: 505
   step: 8253
-  is_completed: false
+  is_completed: true
 - id: 506
   step: 8254
-  is_completed: false
+  is_completed: true
 - id: 507
   step: 8255
   is_completed: false
@@ -47,6 +47,8 @@ topics:
     theory_id: 7255
   - title: Dynamic array
     theory_id: 5357
+  - title: IDE
+    theory_id: 10996
   - title: World Wide Web
     theory_id: 6633
   - title: HyperText Transfer Protocol
@@ -59,12 +61,10 @@ topics:
     theory_id: 7834
   - title: JSON
     theory_id: 6854
-  - title: Postman
-    theory_id: 8512
-  - title: IDE
-    theory_id: 10996
   - title: Introduction to Spring Boot
     theory_id: 7944
+  - title: Postman
+    theory_id: 8512
   - title: Write, compile, and run
     theory_id: 3739
   - title: JVM, JRE, and JDK
