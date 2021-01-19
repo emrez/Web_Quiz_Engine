@@ -1,4 +1,4 @@
-package engine.data;
+package engine.jpa;
 
 import engine.domain.Quiz;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

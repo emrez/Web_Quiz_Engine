@@ -1,4 +1,4 @@
-package engine.controllers;
+package engine.controller;
 
 import engine.dto.AnswerFeedbackDTO;
 import engine.dto.QuizAnswerDTO;

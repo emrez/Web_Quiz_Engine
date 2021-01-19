@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "users")
 @Table
@@ -27,6 +28,9 @@ public class User {
     @Email
     public String email;
     public String password;
+
+    @ElementCollection
+    public List<String> roles;
 
     @CreatedDate
     @JsonIgnore

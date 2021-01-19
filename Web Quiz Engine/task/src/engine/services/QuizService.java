@@ -1,6 +1,6 @@
 package engine.services;
 
-import engine.data.QuizRepository;
+import engine.jpa.QuizRepository;
 import engine.domain.Quiz;
 import engine.dto.AnswerFeedbackDTO;
 import engine.dto.QuizAnswerDTO;
