@@ -21,18 +21,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    //    @ModelAttribute("user")
     @PostMapping(value = "/api/register", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> registerUserAccount(
             @RequestBody @Validated UserRegistrationDTO userDto,
             BindingResult bindingResult) {
-//            Model userDto) {
-        System.out.println("Registering: " + userDto);
 
         if (bindingResult.hasErrors()) {
-//            System.out.println(userDto);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Required conditions are not met");
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, bindingResult.getFieldError().getDefaultMessage());
         }
         try {
             userService.registerNewUserAccount(userDto);

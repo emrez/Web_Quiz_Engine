@@ -25,7 +25,6 @@ public class MyUserDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    //
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
@@ -38,7 +37,6 @@ public class MyUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User
                 (user.getEmail(),
                         user.getPassword(), enabled, accountNonExpired,
-//                        user.getPassword().toLowerCase(), enabled, accountNonExpired,
                         credentialsNonExpired, accountNonLocked,
                         getAuthorities(user.getRoles()));
     }
@@ -46,7 +44,6 @@ public class MyUserDetailsService implements UserDetailsService {
     private static List<GrantedAuthority> getAuthorities(List<String> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (String role : roles) {
-//            AuthorityUtils.createAuthorityList("role");
             authorities.add(new SimpleGrantedAuthority(role));
         }
         return authorities;

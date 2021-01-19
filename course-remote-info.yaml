@@ -19,10 +19,10 @@ stages:
   is_completed: true
 - id: 508
   step: 8256
-  is_completed: false
+  is_completed: true
 - id: 509
   step: 8257
-  is_completed: false
+  is_completed: true
 topics:
   0:
   - title: External resources

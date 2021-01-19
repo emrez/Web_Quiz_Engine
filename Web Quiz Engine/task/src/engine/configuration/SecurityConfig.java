@@ -36,22 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/api/register", "/api/register/", "/actuator/shutdown").permitAll()
-//                .anyRequest().hasRole("USER")
                 .anyRequest().hasAuthority("ROLE_USER")
                 .and()
                 .httpBasic()
                 .and()
                 .csrf().disable().headers().frameOptions().disable();
-//        http.httpBasic()
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/api/register").permitAll();
-//                .hasRole("USER")
-//                .authorizeRequests()
-//                .antMatchers("/api/register").permitAll()
-//                .and()
-        // some more method calls
-//                .formLogin();
-//                .antMatchers("/admin/**").hasRole("ADMIN")
     }
 }
