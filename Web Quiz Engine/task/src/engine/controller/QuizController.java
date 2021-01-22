@@ -53,7 +53,9 @@ public class QuizController {
 
     }
 
-    @PostMapping(value = "/api/quizzes", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/api/quizzes",
+            consumes = "application/json",
+            produces = "application/json")
     public ResponseEntity<QuizDTO> postNewQuiz(
             Authentication principal,
             @RequestBody @Validated QuizCreationDTO quizCreation,
@@ -98,13 +100,14 @@ public class QuizController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(value = "/api/quizzes/completed", produces = "application/json")
+    @GetMapping(value = "/api/quizzes/completed",
+            produces = "application/json")
     public ResponseEntity<Page<QuizCompletion>> getCompletedQuizzes(
             @RequestParam("page") int page,
             Authentication principal
     ) {
         return ResponseEntity.ok(
-                quizService.getCompletedQuizzesOnPage(page,10,principal.getName()));
+                quizService.getCompletedQuizzesOnPage(page, 10, principal.getName()));
 
     }
 
