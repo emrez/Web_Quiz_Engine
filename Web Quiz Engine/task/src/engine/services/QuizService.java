@@ -18,7 +18,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class QuizService {
@@ -39,9 +38,8 @@ public class QuizService {
     }
 
     public QuizDTO findById(long id) {
-        return convertToQuizDTO(quizRepository
-                .findById(id)
-                .orElseThrow(IllegalArgumentException::new));
+        return convertToQuizDTO(
+                quizRepository.findById(id).orElseThrow(IllegalArgumentException::new));
     }
 
     public QuizDTO save(QuizCreationDTO quiz, String email) {
@@ -57,12 +55,9 @@ public class QuizService {
         if (pageNumber < 0 || quizRepository.count() == 0) {
             return Page.empty();
         }
-        Pageable sortedByLastUpdateDesc = PageRequest
-                .of(pageNumber,
-                        rowPerPage,
-                        Sort.by("id")
-                                .descending());
-        Page<Quiz> page = quizRepository.findAll(sortedByLastUpdateDesc);
+        Pageable sortedById = PageRequest.of(
+                pageNumber, rowPerPage, Sort.by("id").descending());
+        Page<Quiz> page = quizRepository.findAll(sortedById);
         return page.map(this::convertToQuizDTO);
     }
 
@@ -72,23 +67,11 @@ public class QuizService {
         if (pageNumber < 0 || completionRepository.count() == 0) {
             return Page.empty();
         }
-        Pageable sortedByLastUpdateDesc = PageRequest
-                .of(pageNumber,
-                        rowPerPage,
-                        Sort.by("completedAt")
-                                .descending());
-        return completionRepository.findAllByEmail(email, sortedByLastUpdateDesc);
+        Pageable sortedByCompletedAt = PageRequest.of(
+                pageNumber, rowPerPage, Sort.by("completedAt").descending());
+
+        return completionRepository.findAllByEmail(email, sortedByCompletedAt);
     }
-
-    public List<QuizDTO> getAllQuizzes() {
-        return ((List<Quiz>) quizRepository
-                .findAll())
-                .stream()
-                .map(this::convertToQuizDTO)
-                .collect(Collectors.toList());
-
-    }
-
 
     private QuizDTO convertToQuizDTO(Quiz user) {
         modelMapper.getConfiguration()
@@ -134,13 +117,9 @@ public class QuizService {
     public void delete(Long id, String email) throws IllegalAccessException {
         Quiz quiz = quizRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         if (!quiz.getAuthorEmail().equals(email)) {
-            System.out.println("Illegal Access Exceptio: ");
             throw new IllegalAccessException("This user doesn't have permission to delete this quiz");
         }
-        System.out.println("Deleting: ");
-        System.out.println("Exist?" + quizRepository.existsById(id));
         quizRepository.deleteById(id);
-        System.out.println("Deleted: ");
     }
 
 
