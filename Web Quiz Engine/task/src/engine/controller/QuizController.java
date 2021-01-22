@@ -103,12 +103,8 @@ public class QuizController {
             @RequestParam("page") int page,
             Authentication principal
     ) {
-        return ResponseEntity
-                .ok(quizService
-                        .getCompletedQuizzesOnPage(
-                                page,
-                                10,
-                                principal.getName()));
+        return ResponseEntity.ok(
+                quizService.getCompletedQuizzesOnPage(page,10,principal.getName()));
 
     }
 
